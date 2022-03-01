@@ -1,3 +1,13 @@
 .background_color{
     background-color: rgba(0, 255, 255, 0.274);
 }
+#error-message{
+    display: none;
+    text-align: center;
+    color: red;
+    font-size: large;
+    font-weight: 900;
+}
+
+
+/* displaySearch(data) */

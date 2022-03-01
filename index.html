@@ -25,7 +25,16 @@
         <input id="search_feild" type="text" class="form-control" placeholder="Let's Find your phone"
             aria-describedby="button-addon2">
         <button class="btn btn-outline-secondary bg-dark text-warning rounded-3" type="button"
-            id="button_search">SEARCH</button>
+            onclick="searchPhone()">SEARCH</button>
+    </div>
+    <!-- error msg  -->
+    <div>
+        <p id="error-message">👉🏾Something went wrong please try again!..</p>
+    </div>
+
+    <!-- grid card search-result -->
+    <div id="search_result" class="row row-cols-1 row-cols-lg-3 g-xl-5 w-75 mx-auto">
+
     </div>
 
     <!-- Bootsstrap javascript -->
