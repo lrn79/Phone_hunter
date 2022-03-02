@@ -74,7 +74,7 @@ const displayDtailPart = detail => {
 
     const div = document.createElement("div")
     div.classList.add("col")
-    div.innerHTML = `<div class="card mb-3 mx-auto" style="max-width:800px;margin-right:100px">
+    div.innerHTML = `<div class="card mt-4 mb-3 mx-auto" style="max-width:800px;margin-right:100px">
     <div class="col-md-4 mx-auto">
     <img style="width:100%" src="${detail.image}" class="w-100 rounded-3 " alt="..">
     </div>
