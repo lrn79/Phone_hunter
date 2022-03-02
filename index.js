@@ -27,10 +27,12 @@ const searchPhone = () => {
         } else {
             const searchResult = document.getElementById('search_result');
             searchResult.textContent = "";
+            const connectedDisplayID = document.getElementById('detail_part');
+            connectedDisplayID.textContent = "";
 
 
             phones.slice(0, 20).forEach(phone => {
-                console.log(phone);
+                // console.log(phone);
 
                 const div = document.createElement('div');
                 div.classList.add('col');
@@ -69,6 +71,7 @@ const displayDtailPart = detail => {
 
     const connectedDisplayID = document.getElementById('detail_part');
     connectedDisplayID.textContent = "";
+
     const div = document.createElement("div")
     div.classList.add("col")
     div.innerHTML = `<div class="card mb-3 mx-auto" style="max-width:800px;margin-right:100px">
@@ -85,21 +88,21 @@ const displayDtailPart = detail => {
     <p class="card-text fw-bold text-danger mb-1">Model: ${detail.name}</p>
     <p class="card-text fw-bold text-danger mb-1">Brand: ${detail.brand}</p>
     <p class="Detail_color fw-bold mb-1">Main Features:</p>
-    <li> <span >storage: ${detail.mainFeatures.storage ? detail.mainFeatures.storage : 'No data found'}</span></li>
-    <li><span >Memory: ${detail.mainFeatures.memory ? detail.mainFeatures.memory : 'No data found'}</span></li>
-    <li><span >chipSet: ${detail.mainFeatures.chipSet ? detail.mainFeatures.chipSet : 'No data found'}</span></li>
-    <li ><span>Display: ${detail.mainFeatures.displaySize ? detail.mainFeatures.displaySize : 'No data found'}</span></li>
+    <p>storage: ${detail.mainFeatures.storage ? detail.mainFeatures.storage : 'No data here'}</p>
+    <p>Memory: ${detail.mainFeatures.memory ? detail.mainFeatures.memory : 'No data here'}</p>
+    <p>chipSet: ${detail.mainFeatures.chipSet ? detail.mainFeatures.chipSet : 'No data here'}</p>
+    <p>Display: ${detail.mainFeatures.displaySize ? detail.mainFeatures.displaySize : 'No data here'}</span>
     <p class="Detail_color  fw-bold mb-1">Sensors:</p>
-    <span >${detail.mainFeatures.sensors ? detail.mainFeatures.sensors : 'No data found'}</span>
+    <span >${detail.mainFeatures.sensors ? detail.mainFeatures.sensors : 'No data found'}</p>
     <p class="card-text mb-1">Release-Date: ${detail.releaseDate ? detail.releaseDate : "Not realised yet..."}</p>
     <p class="Detail_color fw-bold mb-1">Others:</p>
     ${detail.others ?
-            `<li"> <span >Bluetooth:${detail.others.Bluetooth} </span></li>
-    <li><span >Wlan:${detail.others.WLAN} </span></li>
-    <li> <span>GPS:  ${detail.others.GPS}</span> </li>
-    <li> <span >NFC:  ${detail.others.NFC} </span></li>
-    <li> <span >Radio:  ${detail.others.Radio}</span></li>
-    <li> <span >Usb:  ${detail.others.USB}</span> </li>`
+            `<span >Bluetooth:${detail.others.Bluetooth} </span>
+    <p >Wlan:${detail.others.WLAN} </p>
+     <p>GPS:  ${detail.others.GPS}</p>
+     <p >NFC:  ${detail.others.NFC} </p>
+     <p >Radio:  ${detail.others.Radio}</p>
+     <p >Usb:  ${detail.others.USB}</p>`
 
             : 'This phone has not any features yet'}
     </div>
@@ -109,4 +112,5 @@ const displayDtailPart = detail => {
     
     </div>`
     connectedDisplayID.appendChild(div);
+
 }
