@@ -8,6 +8,17 @@
     font-size: large;
     font-weight: 900;
 }
+.margin_left{
+    margin-left: 75%;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.Detail_color{
+    color: rgb(8, 230, 0);
+}
+.Detail_color2{
+    color: rgb(0, 38, 253);
+}
 
 
 /* displaySearch(data) */

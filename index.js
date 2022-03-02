@@ -15,34 +15,98 @@ const searchPhone = () => {
         fetch(url)
             .then(res => res.json())
             .then(data => displaySearch(data.data))
-            .catch(error => displayError(error));
+
     }
 
-    const displayError = error => {
-        document.getElementById('error-message').style.display = 'block';
-    }
+
 
     const displaySearch = phones => {
-        const searchResult = document.getElementById('search_result');
-        searchResult.textContent = "";
+        console.log(phones)
+        if (phones.length == 0) {
+            document.getElementById('error-message').style.display = 'block';
+        } else {
+            const searchResult = document.getElementById('search_result');
+            searchResult.textContent = "";
 
 
-        phones.slice(0, 20).forEach(phone => {
-            console.log(phone);
+            phones.slice(0, 20).forEach(phone => {
+                console.log(phone);
 
-            const div = document.createElement('div');
-            div.classList.add('col');
-            div.innerHTML = `
-        <div class="card">
-        <img src="${phone.image}" class="card-img-top">
-        <div class="card-body">
-            <h5 class="card-title">Name : ${phone.phone_name}</h5>
-            <p class="card-text">Brand : ${phone.brand} </p>
+                const div = document.createElement('div');
+                div.classList.add('col');
+                div.innerHTML = `
+            <div class="card">
+            <img src="${phone.image}" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">Name : ${phone.phone_name}</h5>
+                <p class="card-text">Brand : ${phone.brand} </p>
+                <button  class="btn btn-outline-secondary bg-dark text-warning rounded-3 margin_left"
+                onclick="datailPart('${phone.slug}')">Detail</button>
+            </div>
         </div>
-    </div>
-        `;
-            searchResult.appendChild(div);
+            `;
+                searchResult.appendChild(div);
 
-        });
+            });
+        }
     }
+
+}
+
+// detail section
+
+const datailPart = (id) => {
+    const url = `https://openapi.programming-hero.com/api/phone/${id}`;
+
+
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayDtailPart(data.data))
+}
+
+const displayDtailPart = detail => {
+    // console.log(detail.slug)
+
+    const connectedDisplayID = document.getElementById('detail_part');
+    connectedDisplayID.textContent = "";
+    const div = document.createElement("div")
+    div.classList.add("col")
+    div.innerHTML = `<div class="card mb-3 mx-auto" style="max-width:800px;margin-right:100px">
+    <div class="col-md-4 mx-auto">
+    <img style="width:100%" src="${detail.image}" class="w-100 rounded-3 " alt="..">
+    </div>
+    <div class="row g-0 ">
+   
+    
+    <div class="col-md-8">
+    <div class="card-body >
+
+    <p class ="mx-auto"><i class = "Detail_color2 fw-bold mb-1">ALL ABOUT THIS PHONE</i></p>
+    <p class="card-text fw-bold text-danger mb-1">Model: ${detail.name}</p>
+    <p class="card-text fw-bold text-danger mb-1">Brand: ${detail.brand}</p>
+    <p class="Detail_color fw-bold mb-1">Main Features:</p>
+    <li> <span >storage: ${detail.mainFeatures.storage ? detail.mainFeatures.storage : 'No data found'}</span></li>
+    <li><span >Memory: ${detail.mainFeatures.memory ? detail.mainFeatures.memory : 'No data found'}</span></li>
+    <li><span >chipSet: ${detail.mainFeatures.chipSet ? detail.mainFeatures.chipSet : 'No data found'}</span></li>
+    <li ><span>Display: ${detail.mainFeatures.displaySize ? detail.mainFeatures.displaySize : 'No data found'}</span></li>
+    <p class="Detail_color  fw-bold mb-1">Sensors:</p>
+    <span >${detail.mainFeatures.sensors ? detail.mainFeatures.sensors : 'No data found'}</span>
+    <p class="card-text mb-1">Release-Date: ${detail.releaseDate ? detail.releaseDate : "Not realised yet..."}</p>
+    <p class="Detail_color fw-bold mb-1">Others:</p>
+    ${detail.others ?
+            `<li"> <span >Bluetooth:${detail.others.Bluetooth} </span></li>
+    <li><span >Wlan:${detail.others.WLAN} </span></li>
+    <li> <span>GPS:  ${detail.others.GPS}</span> </li>
+    <li> <span >NFC:  ${detail.others.NFC} </span></li>
+    <li> <span >Radio:  ${detail.others.Radio}</span></li>
+    <li> <span >Usb:  ${detail.others.USB}</span> </li>`
+
+            : 'This phone has not any features yet'}
+    </div>
+    </div>
+    
+    </div>
+    
+    </div>`
+    connectedDisplayID.appendChild(div);
 }
